@@ -1,4 +1,7 @@
-const playerChoice = "paper";
+function getPlayerChoice(){
+    let choice = prompt("Rock, paper, or scissors?", "");
+    return choice.toUpperCase();
+}
 
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
@@ -32,16 +35,18 @@ function playRound(playerChoice, computerChoice){
 function playGame(){
     let winCount = 0;
     let loseCount = 0;
-    
+
     for (let i = 0; i < 5; i++){
-        let result = playRound(playerChoice.toUpperCase(), getComputerChoice());
+        let result = playRound(getPlayerChoice(), getComputerChoice());
         console.log(result[0]);
 
         if (result[1] == 0){
             winCount++;
-        } else if (result[1] == 1){
+        } 
+        else if (result[1] == 1){
             loseCount++;
         }
+        
         if (winCount == 3){
             return `You're the winner! Wins: ${winCount} \tLosses: ${loseCount}`;
         } else if (loseCount == 3) {
