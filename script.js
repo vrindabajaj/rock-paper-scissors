@@ -1,7 +1,20 @@
-function getPlayerChoice(){
-    let choice = prompt("Rock, paper, or scissors?", "");
-    return choice.toUpperCase();
-}
+let winCount = 0;
+let loseCount = 0;
+let games = 0;
+
+const buttons = document.querySelectorAll("button");
+const roundResult = document.querySelector(".round-result");
+const scores = document.querySelector(".scores");
+const playerScore = document.createElement("div");
+const computerScore = document.createElement("div");
+const finalScore = document.createElement("div");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+    playRound(e.target.textContent);
+    playGame();
+    });
+});
 
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
@@ -16,49 +29,58 @@ function getComputerChoice(){
     }
 }
 
-function playRound(playerChoice, computerChoice){
+function playRound(playerChoice){
+    let result = "";
+    computerChoice = getComputerChoice();
+
     if (playerChoice == "ROCK" && computerChoice == "SCISSORS" ||
     playerChoice == "SCISSORS" && computerChoice == "PAPER" ||
     playerChoice == "PAPER" && computerChoice == "ROCK"){
-        return [`You win! ${playerChoice} beats ${computerChoice}!`, 0];
+        winCount++;
+        games++;
+        result = `You win! ${playerChoice} beats ${computerChoice}!`;
     } 
     else if (playerChoice == "SCISSORS" && computerChoice == "ROCK" ||
     playerChoice == "PAPER" && computerChoice == "SCISSORS" ||
     playerChoice == "ROCK" && computerChoice == "PAPER"){
-        return [`You lose! ${computerChoice} beats ${playerChoice}!`, 1];
+        loseCount++;
+        games++;
+        result = `You lose! ${computerChoice} beats ${playerChoice}!`;
     } 
     else {
-        return [`Draw! You both picked ${playerChoice}.`, 2];
+        result = `Draw! You both picked ${playerChoice}.`;
     }
+    playerScore.textContent = `Your score: ${winCount}`;
+    computerScore.textContent = `Computer's score: ${loseCount}`;
+    roundResult.textContent = result;
+    scores.appendChild(playerScore); 
+    scores.appendChild(computerScore);
 }
 
 function playGame(){
-    let winCount = 0;
-    let loseCount = 0;
-
-    for (let i = 0; i < 5; i++){
-        let result = playRound(getPlayerChoice(), getComputerChoice());
-        console.log(result[0]);
-
-        if (result[1] == 0){
-            winCount++;
-        } 
-        else if (result[1] == 1){
-            loseCount++;
-        }
-        
+    let result = "";
+    let gameOver = false;
+    if (games < 5){
         if (winCount == 3){
-            return `You're the winner! Wins: ${winCount} \tLosses: ${loseCount}`;
+            result = `You're the winner! Wins: ${winCount} \tLosses: ${loseCount}`;
+            gameOver = true;
         } else if (loseCount == 3) {
-            return `You're the loser! Wins: ${winCount} \tLosses: ${loseCount}`;
+            result = `You're the loser! Wins: ${winCount} \tLosses: ${loseCount}`;
+            gameOver = true;
         }
     }
-    if(winCount > loseCount){
-        return `You're the winner! Wins: ${winCount} \tLosses: ${loseCount}`;
+    else if(winCount > loseCount){
+        result = `You're the winner! Wins: ${winCount} \tLosses: ${loseCount}`;
+        gameOver = true;
     } else {
-        return `You're the loser! Wins: ${winCount} \tLosses: ${loseCount}`;
+        result = `You're the loser! Wins: ${winCount} \tLosses: ${loseCount}`;
+        gameOver = true;
+    }
+    if (gameOver){
+        finalScore.textContent = result;
+        scores.appendChild(finalScore);
+        buttons.forEach((button) => {
+            button.disabled = true;
+        });
     }
 }
-
-console.log(playGame());
-
