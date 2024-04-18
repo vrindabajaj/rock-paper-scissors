@@ -8,6 +8,10 @@ const playerPoints = document.querySelector("#player");
 const computerPoints = document.querySelector("#computer");
 const finalScore = document.querySelector(".final-score");
 const playAgain = document.querySelector(".play-again");
+const introScreen = document.querySelector('.intro');
+const playBtn = document.querySelector('.intro .play-btn');
+const title = document.querySelector('.title');
+const gameScreen = document.querySelector(".game");
 
 const playerScore = document.createElement("div");
 const computerScore = document.createElement("div");
@@ -18,6 +22,14 @@ playAgainText.textContent = "Play again?";
 const replaySymbol = document.createElement("div");
 replaySymbol.classList.add("symbol");
 replaySymbol.textContent = "↺";
+
+playBtn.addEventListener("click", () => {
+    playBtn.classList.add("fadeOut");
+    gameScreen.classList.add("fadeIn");
+    title.style.animation = "titleTransition 2s ease";
+    title.style.animationFillMode = "forwards";
+    introScreen.style.height = "0px";
+})
 
 buttons.forEach((button) => {
     button.addEventListener("click", function (e) {
@@ -75,7 +87,7 @@ function playRound(playerChoice){
 function playGame(){
     let result = "";
     let gameOver = false;
-    
+
     if (games < 5){
         if (winCount == 3){
             result = `You're the winner! Wins: ${winCount} \tLosses: ${loseCount}`;

@@ -1,7 +1,15 @@
 body {
     background-color: #EE6055;
     font-family: 'Roboto Mono', monospace;
-    color:rgb(255, 248, 239)
+    font-size: 25px;
+    color:rgb(255, 248, 239);
+}
+
+.title-container{
+    display: flex;
+    height: 250px;
+    justify-content: center;
+    align-items: end;
 }
 
 .title {
@@ -9,7 +17,24 @@ body {
     text-align: center;
     font-size: 70px;
     margin: 20px 0px;
-    color: #ffe0a7
+    color: #ffe0a7;
+    position: relative;
+}
+
+.intro {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-btn:hover{
+    text-decoration: underline;
+}
+
+.game {
+    transition: 0.5s ease-in 0.5s;
 }
 
 button {
@@ -91,3 +116,23 @@ button:disabled {
     font-size: 40px;
     cursor: pointer;
 }
+
+div.fadeOut {
+    opacity: 0;
+    pointer-events: none;
+}
+
+div.fadeIn {
+    opacity: 1;
+    pointer-events: all;
+}
+
+@keyframes titleTransition {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-100px);
+    }
+}
+
