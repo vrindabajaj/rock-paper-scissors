@@ -1,0 +1,93 @@
+body {
+    background-color: #EE6055;
+    font-family: 'Roboto Mono', monospace;
+    color:rgb(255, 248, 239)
+}
+
+.title {
+    font-family: "Racing Sans One", sans-serif;
+    text-align: center;
+    font-size: 70px;
+    margin: 20px 0px;
+    color: #ffe0a7
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #382828;
+    background-color: #60D394;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #666;
+}
+
+button:hover {
+    background-color: #AAF683;
+}
+
+button:active {
+    background-color: #AAF683;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    background-color: #FF9B85;
+}
+
+.rps-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.points {
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+.points-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.points-title div{
+    font-size: 24px;
+}
+
+.final-score{
+    display: flex;
+    justify-content: center;
+}
+
+.round-results {
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px 10px;
+    padding: 10px
+}
+
+.play-again {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+}
+
+.play-again .symbol{
+    font-size: 30px;
+}
+
+.play-again .symbol:hover{
+    font-size: 40px;
+    cursor: pointer;
+}

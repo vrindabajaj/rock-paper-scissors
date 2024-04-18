@@ -3,17 +3,31 @@ let loseCount = 0;
 let games = 0;
 
 const buttons = document.querySelectorAll("button");
-const roundResult = document.querySelector(".round-result");
-const scores = document.querySelector(".scores");
+const roundResults = document.querySelector(".round-results");
+const playerPoints = document.querySelector("#player");
+const computerPoints = document.querySelector("#computer");
+const finalScore = document.querySelector(".final-score");
+const playAgain = document.querySelector(".play-again");
+
 const playerScore = document.createElement("div");
 const computerScore = document.createElement("div");
-const finalScore = document.createElement("div");
+const roundResult = document.createElement("div");
+const gameOverScore = document.createElement("div");
+const playAgainText = document.createElement("div");
+playAgainText.textContent = "Play again?";
+const replaySymbol = document.createElement("div");
+replaySymbol.classList.add("symbol");
+replaySymbol.textContent = "↺";
 
 buttons.forEach((button) => {
     button.addEventListener("click", function (e) {
     playRound(e.target.textContent);
     playGame();
     });
+});
+
+replaySymbol.addEventListener("click", () => {
+        location.reload();
 });
 
 function getComputerChoice(){
@@ -31,7 +45,7 @@ function getComputerChoice(){
 
 function playRound(playerChoice){
     let result = "";
-    computerChoice = getComputerChoice();
+    let computerChoice = getComputerChoice();
 
     if (playerChoice == "ROCK" && computerChoice == "SCISSORS" ||
     playerChoice == "SCISSORS" && computerChoice == "PAPER" ||
@@ -50,16 +64,18 @@ function playRound(playerChoice){
     else {
         result = `Draw! You both picked ${playerChoice}.`;
     }
-    playerScore.textContent = `Your score: ${winCount}`;
-    computerScore.textContent = `Computer's score: ${loseCount}`;
+    playerScore.textContent = winCount;
+    computerScore.textContent = loseCount;
     roundResult.textContent = result;
-    scores.appendChild(playerScore); 
-    scores.appendChild(computerScore);
+    playerPoints.appendChild(playerScore); 
+    computerPoints.appendChild(computerScore);
+    roundResults.appendChild(roundResult);
 }
 
 function playGame(){
     let result = "";
     let gameOver = false;
+    
     if (games < 5){
         if (winCount == 3){
             result = `You're the winner! Wins: ${winCount} \tLosses: ${loseCount}`;
@@ -77,10 +93,12 @@ function playGame(){
         gameOver = true;
     }
     if (gameOver){
-        finalScore.textContent = result;
-        scores.appendChild(finalScore);
+        gameOverScore.textContent = result;
+        finalScore.appendChild(gameOverScore);
         buttons.forEach((button) => {
             button.disabled = true;
         });
+        playAgain.append(playAgainText);
+        playAgain.append(replaySymbol);
     }
 }

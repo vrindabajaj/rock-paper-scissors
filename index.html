@@ -4,17 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Rock, Paper, Scissors</h2>
-    <p>Select your choice:</p>
-    <div class="rps-buttons">
-        <button class="rock">ROCK</button>
-        <button class="paper">PAPER</button>
-        <button class="scissors">SCISSORS</button>
-    </div>
-    <div class="scores">
-        <div class="round-result"></div>
+    <div class="title">Rock, Paper, Scissors</div>
+    <div class="game">
+        <div class="points">
+            <div class="points-title" id="player">Your score:</div>
+            <div class="points-title" id="computer">Computer's score:</div>
+        </div>
+        <div class="rps-buttons">
+            <p>Select your choice:</p>
+            <div>
+                <button class="rock">ROCK</button>
+                <button class="paper">PAPER</button>
+                <button class="scissors">SCISSORS</button>
+            </div>
+        </div>
+        <div class="round-results"></div>
+        <div class="final-score"></div>
+        <div class="play-again"></div>
     </div>
     
     <script src="script.js" defer></script>
